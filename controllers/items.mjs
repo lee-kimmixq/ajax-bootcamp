@@ -8,7 +8,16 @@ export default function initItemsController(db) {
     }
   };
 
+  const getOne = async (req, res) => {
+    try {
+      const item = await db.Item.findOne({ where: { id: req.params.id } });
+      res.send({ item });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
-    index,
+    index, getOne,
   };
 }
